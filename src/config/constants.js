@@ -1,6 +1,6 @@
 // ─── WhatsApp Configuration ───────────────────────────────────────────────────
 // Replace with your actual WhatsApp business number (country code + number, no + or spaces)
-export const WHATSAPP_NUMBER = "919999999999";
+export const WHATSAPP_NUMBER = "917338894973";
 
 export const getWhatsAppLink = (packageName = "") => {
   const message = encodeURIComponent(
