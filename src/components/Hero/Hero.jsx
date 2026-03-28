@@ -117,7 +117,7 @@ const Hero = () => {
 
       {/* ─── Main Content ─── */}
       <motion.div
-        className="relative z-10 section-padding text-center max-w-5xl mx-auto w-full"
+        className="relative z-10 section-padding text-center max-w-5xl mx-auto w-full pt-20"
         style={{ y: textY, opacity }}
       >
         {/* Eyebrow */}
