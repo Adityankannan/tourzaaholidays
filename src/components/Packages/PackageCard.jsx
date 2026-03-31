@@ -1,5 +1,4 @@
-import { useRef, useState } from "react";
-import { createPortal } from "react-dom";
+import { useRef, useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   FaWhatsapp,
@@ -12,13 +11,15 @@ import {
 import { getWhatsAppLink } from "../../config/constants";
 
 // ─── Image Slideshow inside card ──────────────────────────────────────────────
-const CardSlideshow = ({
-  images,
-  destination,
-  current,
-  setCurrent,
-  onHoverChange,
-}) => {
+const CardSlideshow = ({ images, destination, current, setCurrent }) => {
+  // Preload all images so subsequent slides appear instantly
+  useEffect(() => {
+    images.forEach((src) => {
+      const img = new Image();
+      img.src = src;
+    });
+  }, [images]);
+
   const prev = (e) => {
     e.stopPropagation();
     setCurrent((c) => (c - 1 + images.length) % images.length);
@@ -29,11 +30,7 @@ const CardSlideshow = ({
   };
 
   return (
-    <div
-      className="relative h-60 overflow-hidden group/img cursor-pointer"
-      onMouseEnter={() => onHoverChange(true)}
-      onMouseLeave={() => onHoverChange(false)}
-    >
+    <div className="relative h-60 overflow-hidden group/img cursor-pointer">
       {/* Images — crossfade */}
       <AnimatePresence mode="wait">
         <motion.img
@@ -204,166 +201,145 @@ const PackageCard = ({ pkg, index }) => {
       : ["https://picsum.photos/seed/placeholder/800/600"]);
 
   return (
-    <>
-      <motion.div
-        ref={cardRef}
-        initial={{ opacity: 0, y: 60 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-60px" }}
-        transition={{
-          duration: 0.7,
-          delay: index * 0.08,
-          ease: [0.16, 1, 0.3, 1],
-        }}
-        onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={() => {
-          setIsHovered(false);
-          setIsImgHovered(false);
-        }}
-        className="relative group rounded-2xl overflow-hidden bg-dark-700 border border-white/8
+    <motion.div
+      ref={cardRef}
+      initial={{ opacity: 0, y: 60 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-60px" }}
+      transition={{
+        duration: 0.7,
+        delay: index * 0.08,
+        ease: [0.16, 1, 0.3, 1],
+      }}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      className="relative group rounded-2xl overflow-hidden bg-dark-700 border border-white/8
                    hover:border-gold-500/50 transition-colors duration-300 cursor-pointer"
-        data-hover="true"
-      >
-        {/* ─── Slideshow Image ─── */}
-        <CardSlideshow
-          images={images}
-          destination={pkg.destination}
-          current={imgIndex}
-          setCurrent={setImgIndex}
-          onHoverChange={setIsImgHovered}
-        />
+      data-hover="true"
+    >
+      {/* ─── Slideshow Image ─── */}
+      <CardSlideshow
+        images={images}
+        destination={pkg.destination}
+        current={imgIndex}
+        setCurrent={setImgIndex}
+      />
 
-        {/* Tags overlaid on image */}
-        <div className="relative">
-          <div className="absolute -top-[220px] left-4 z-10">
-            <span className="glass-card text-[10px] font-inter tracking-wider uppercase font-semibold px-3 py-1 text-gold-300">
-              {pkg.continent || pkg.region}
+      {/* Tags overlaid on image */}
+      <div className="relative">
+        <div className="absolute -top-[220px] left-4 z-10">
+          <span className="glass-card text-[10px] font-inter tracking-wider uppercase font-semibold px-3 py-1 text-gold-300">
+            {pkg.continent || pkg.region}
+          </span>
+        </div>
+        <div className="absolute -top-[220px] right-4 z-10 glass-card px-3 py-1 flex items-center gap-1.5">
+          <FaClock className="text-gold-400 text-xs" />
+          <span className="font-inter text-xs text-white font-medium">
+            {pkg.duration}
+          </span>
+        </div>
+        <div className="absolute -top-[52px] left-4 z-10 text-3xl">
+          {pkg.flag}
+        </div>
+      </div>
+
+      {/* ─── Card Body ─── */}
+      <div className="p-5 flex flex-col gap-3">
+        <div>
+          <div className="flex items-center gap-1.5 mb-1">
+            <FaMapMarkerAlt className="text-gold-400 text-xs flex-shrink-0" />
+            <span className="font-inter text-xs text-white/50 tracking-wide">
+              {pkg.country || pkg.state}
             </span>
           </div>
-          <div className="absolute -top-[220px] right-4 z-10 glass-card px-3 py-1 flex items-center gap-1.5">
-            <FaClock className="text-gold-400 text-xs" />
-            <span className="font-inter text-xs text-white font-medium">
-              {pkg.duration}
-            </span>
-          </div>
-          <div className="absolute -top-[52px] left-4 z-10 text-3xl">
-            {pkg.flag}
-          </div>
+          <h3 className="font-playfair font-bold text-xl text-white leading-tight group-hover:text-gold-300 transition-colors duration-300">
+            {pkg.destination}
+          </h3>
+          <p className="font-inter text-xs italic text-gold-400/80 mt-0.5">
+            {pkg.tagline}
+          </p>
         </div>
 
-        {/* ─── Card Body ─── */}
-        <div className="p-5 flex flex-col gap-3">
+        <p className="font-inter text-sm text-white/55 leading-relaxed line-clamp-2">
+          {pkg.description}
+        </p>
+
+        <div className="flex flex-wrap gap-1.5">
+          {pkg.highlights.slice(0, 3).map((h) => (
+            <span
+              key={h}
+              className="font-inter text-[10px] px-2.5 py-1 rounded-full bg-white/5 border border-white/10 text-white/60"
+            >
+              {h}
+            </span>
+          ))}
+          {pkg.highlights.length > 3 && (
+            <span className="font-inter text-[10px] px-2.5 py-1 rounded-full bg-white/5 border border-white/10 text-white/60">
+              +{pkg.highlights.length - 3} more
+            </span>
+          )}
+        </div>
+
+        <div className="flex items-center justify-between pt-2 border-t border-white/8">
           <div>
-            <div className="flex items-center gap-1.5 mb-1">
-              <FaMapMarkerAlt className="text-gold-400 text-xs flex-shrink-0" />
-              <span className="font-inter text-xs text-white/50 tracking-wide">
-                {pkg.country || pkg.state}
-              </span>
-            </div>
-            <h3 className="font-playfair font-bold text-xl text-white leading-tight group-hover:text-gold-300 transition-colors duration-300">
-              {pkg.destination}
-            </h3>
-            <p className="font-inter text-xs italic text-gold-400/80 mt-0.5">
-              {pkg.tagline}
+            <p className="font-inter text-[10px] text-white/40 uppercase tracking-wider">
+              Starting from
             </p>
+            <p className="font-playfair font-bold text-xl gold-text">
+              {pkg.startingPrice}
+            </p>
+            <p className="font-inter text-[10px] text-white/40">per person</p>
           </div>
 
-          <p className="font-inter text-sm text-white/55 leading-relaxed line-clamp-2">
-            {pkg.description}
-          </p>
-
-          <div className="flex flex-wrap gap-1.5">
-            {pkg.highlights.slice(0, 3).map((h) => (
-              <span
-                key={h}
-                className="font-inter text-[10px] px-2.5 py-1 rounded-full bg-white/5 border border-white/10 text-white/60"
-              >
-                {h}
-              </span>
-            ))}
-            {pkg.highlights.length > 3 && (
-              <span className="font-inter text-[10px] px-2.5 py-1 rounded-full bg-white/5 border border-white/10 text-white/60">
-                +{pkg.highlights.length - 3} more
-              </span>
-            )}
-          </div>
-
-          <div className="flex items-center justify-between pt-2 border-t border-white/8">
-            <div>
-              <p className="font-inter text-[10px] text-white/40 uppercase tracking-wider">
-                Starting from
-              </p>
-              <p className="font-playfair font-bold text-xl gold-text">
-                {pkg.startingPrice}
-              </p>
-              <p className="font-inter text-[10px] text-white/40">per person</p>
-            </div>
-
-            <motion.a
-              href={getWhatsAppLink(pkg.destination)}
-              target="_blank"
-              rel="noopener noreferrer"
-              initial={{ opacity: 0, scale: 0.85, x: 20 }}
-              animate={{
-                opacity: isHovered ? 1 : 0,
-                scale: isHovered ? 1 : 0.85,
-                x: isHovered ? 0 : 20,
-              }}
-              transition={{ duration: 0.25, ease: "easeOut" }}
-              className="flex items-center gap-2 bg-gold-gradient text-dark-900 font-inter font-semibold
+          <motion.a
+            href={getWhatsAppLink(pkg.destination)}
+            target="_blank"
+            rel="noopener noreferrer"
+            initial={{ opacity: 0, scale: 0.85, x: 20 }}
+            animate={{
+              opacity: isHovered ? 1 : 0,
+              scale: isHovered ? 1 : 0.85,
+              x: isHovered ? 0 : 20,
+            }}
+            transition={{ duration: 0.25, ease: "easeOut" }}
+            className="flex items-center gap-2 bg-gold-gradient text-dark-900 font-inter font-semibold
                          text-sm px-4 py-2.5 rounded-full hover:shadow-[0_0_20px_rgba(251,191,36,0.5)]
                          transition-shadow duration-300 whitespace-nowrap"
-              onClick={(e) => e.stopPropagation()}
-              data-hover="true"
-              aria-label={`Enquire about ${pkg.destination} on WhatsApp`}
-            >
-              <FaWhatsapp className="text-base" />
-              Enquire Now
-            </motion.a>
+            onClick={(e) => e.stopPropagation()}
+            data-hover="true"
+            aria-label={`Enquire about ${pkg.destination} on WhatsApp`}
+          >
+            <FaWhatsapp className="text-base" />
+            Enquire Now
+          </motion.a>
 
-            <motion.div
-              className="flex items-center gap-0.5"
-              animate={{ opacity: isHovered ? 0 : 1 }}
-              transition={{ duration: 0.2 }}
-            >
-              {[1, 2, 3, 4, 5].map((s) => (
-                <FaStar key={s} className="text-gold-400 text-xs" />
-              ))}
-            </motion.div>
-          </div>
+          <motion.div
+            className="flex items-center gap-0.5"
+            animate={{ opacity: isHovered ? 0 : 1 }}
+            transition={{ duration: 0.2 }}
+          >
+            {[1, 2, 3, 4, 5].map((s) => (
+              <FaStar key={s} className="text-gold-400 text-xs" />
+            ))}
+          </motion.div>
         </div>
+      </div>
 
-        <motion.div
-          className="absolute inset-0 rounded-2xl pointer-events-none"
-          animate={
-            isHovered
-              ? {
-                  boxShadow:
-                    "0 0 0 1.5px rgba(251,191,36,0.6), 0 20px 60px rgba(251,191,36,0.12)",
-                }
-              : {
-                  boxShadow: "0 0 0 1.5px transparent, 0 20px 60px transparent",
-                }
-          }
-          transition={{ duration: 0.3 }}
-        />
-      </motion.div>
-
-      {/* ─── Hover Popup via portal ─── */}
-      {createPortal(
-        <AnimatePresence>
-          {isImgHovered && (
-            <ImagePopup
-              images={images}
-              current={imgIndex}
-              setCurrent={setImgIndex}
-              onClose={() => setIsImgHovered(false)}
-            />
-          )}
-        </AnimatePresence>,
-        document.body,
-      )}
-    </>
+      <motion.div
+        className="absolute inset-0 rounded-2xl pointer-events-none"
+        animate={
+          isHovered
+            ? {
+                boxShadow:
+                  "0 0 0 1.5px rgba(251,191,36,0.6), 0 20px 60px rgba(251,191,36,0.12)",
+              }
+            : {
+                boxShadow: "0 0 0 1.5px transparent, 0 20px 60px transparent",
+              }
+        }
+        transition={{ duration: 0.3 }}
+      />
+    </motion.div>
   );
 };
 

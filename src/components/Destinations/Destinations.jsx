@@ -1,42 +1,131 @@
-import { useRef } from "react";
-import { motion, useInView } from "framer-motion";
-import { FaMapMarkerAlt } from "react-icons/fa";
+import { useRef, useState, useEffect } from "react";
+import { motion, useInView, AnimatePresence } from "framer-motion";
+import { FaMapMarkerAlt, FaChevronLeft, FaChevronRight } from "react-icons/fa";
+
+// ─── Bali (14 images) ─────────────────────────────────────────────────────────
+import bali1 from "../../assets/images/bali/IMG_7413.JPG";
+import bali2 from "../../assets/images/bali/IMG_7414.JPG";
+import bali3 from "../../assets/images/bali/IMG_7415.JPG";
+import bali4 from "../../assets/images/bali/IMG_7416.JPG";
+import bali5 from "../../assets/images/bali/IMG_7417.JPG";
+import bali6 from "../../assets/images/bali/IMG_7418.JPG";
+import bali7 from "../../assets/images/bali/IMG_7419.JPG";
+import bali8 from "../../assets/images/bali/IMG_7420.JPG";
+import bali9 from "../../assets/images/bali/IMG_7421.JPG";
+import bali10 from "../../assets/images/bali/IMG_7422.JPG";
+import bali11 from "../../assets/images/bali/IMG_7443.JPG";
+import bali12 from "../../assets/images/bali/IMG_7444.JPG";
+import bali13 from "../../assets/images/bali/IMG_7445.JPG";
+import bali14 from "../../assets/images/bali/IMG_7446.JPG";
+
+// ─── Dubai (13 images) ────────────────────────────────────────────────────────
+import dubai1 from "../../assets/images/dubai/IMG_7404.JPG";
+import dubai2 from "../../assets/images/dubai/IMG_7405.JPG";
+import dubai3 from "../../assets/images/dubai/IMG_7406.JPG";
+import dubai4 from "../../assets/images/dubai/IMG_7407.JPG";
+import dubai5 from "../../assets/images/dubai/IMG_7408.JPG";
+import dubai6 from "../../assets/images/dubai/IMG_7411.JPG";
+import dubai7 from "../../assets/images/dubai/IMG_7467.JPG";
+import dubai8 from "../../assets/images/dubai/IMG_7468.JPG";
+import dubai9 from "../../assets/images/dubai/IMG_7469.JPG";
+import dubai10 from "../../assets/images/dubai/IMG_7470.JPG";
+import dubai11 from "../../assets/images/dubai/IMG_7471.JPG";
+import dubai12 from "../../assets/images/dubai/IMG_7473.JPG";
+import dubai13 from "../../assets/images/dubai/car-desert.jpg";
+
+// ─── Maldives (7 images) ──────────────────────────────────────────────────────
+import maldives1 from "../../assets/images/maldives/IMG_7472.JPG";
+import maldives2 from "../../assets/images/maldives/IMG_7474.JPG";
+import maldives3 from "../../assets/images/maldives/pexels-saeb-mahajna-14125913-6297105.jpg";
+import maldives4 from "../../assets/images/maldives/piqsels.com-id-zkibx.jpg";
+import maldives5 from "../../assets/images/maldives/wallpaperflare.com_wallpaper (1).jpg";
+import maldives6 from "../../assets/images/maldives/wallpaperflare.com_wallpaper.jpg";
+import maldives7 from "../../assets/images/maldives/wallpaperflare.com_wallpaper4.jpg";
 
 const destinations = [
   {
     name: "Kashmir",
     country: "India",
-    image: "https://picsum.photos/seed/kashmir-dest/600/800",
+    images: [
+      "https://picsum.photos/seed/kashmir-dest/600/800",
+      "https://picsum.photos/seed/kashmir-dest2/600/800",
+      "https://picsum.photos/seed/kashmir-dest3/600/800",
+    ],
     tag: "Domestic",
   },
   {
     name: "Bali",
     country: "Indonesia",
-    image: "https://picsum.photos/seed/bali-dest/600/800",
+    images: [
+      bali1,
+      bali2,
+      bali3,
+      bali4,
+      bali5,
+      bali6,
+      bali7,
+      bali8,
+      bali9,
+      bali10,
+      bali11,
+      bali12,
+      bali13,
+      bali14,
+    ],
     tag: "International",
   },
   {
     name: "Kerala",
     country: "India",
-    image: "https://picsum.photos/seed/kerala-dest/600/800",
+    images: [
+      "https://picsum.photos/seed/kerala-dest/600/800",
+      "https://picsum.photos/seed/kerala-dest2/600/800",
+      "https://picsum.photos/seed/kerala-dest3/600/800",
+    ],
     tag: "Domestic",
   },
   {
     name: "Dubai",
     country: "UAE",
-    image: "https://picsum.photos/seed/dubai-dest/600/800",
+    images: [
+      dubai1,
+      dubai2,
+      dubai3,
+      dubai4,
+      dubai5,
+      dubai6,
+      dubai7,
+      dubai8,
+      dubai9,
+      dubai10,
+      dubai11,
+      dubai12,
+      dubai13,
+    ],
     tag: "International",
   },
   {
     name: "Maldives",
     country: "Maldives",
-    image: "https://picsum.photos/seed/maldives-dest/600/800",
+    images: [
+      maldives1,
+      maldives2,
+      maldives3,
+      maldives4,
+      maldives5,
+      maldives6,
+      maldives7,
+    ],
     tag: "International",
   },
   {
     name: "Rajasthan",
     country: "India",
-    image: "https://picsum.photos/seed/rajasthan-dest/600/800",
+    images: [
+      "https://picsum.photos/seed/rajasthan-dest/600/800",
+      "https://picsum.photos/seed/rajasthan-dest2/600/800",
+      "https://picsum.photos/seed/rajasthan-dest3/600/800",
+    ],
     tag: "Domestic",
   },
 ];
@@ -44,6 +133,24 @@ const destinations = [
 const DestinationCard = ({ dest, index }) => {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-80px" });
+  const [current, setCurrent] = useState(0);
+
+  // Preload all images so subsequent slides appear instantly
+  useEffect(() => {
+    dest.images?.forEach((src) => {
+      const img = new Image();
+      img.src = src;
+    });
+  }, [dest.images]);
+
+  const prev = (e) => {
+    e.stopPropagation();
+    setCurrent((c) => (c - 1 + dest.images.length) % dest.images.length);
+  };
+  const next = (e) => {
+    e.stopPropagation();
+    setCurrent((c) => (c + 1) % dest.images.length);
+  };
 
   return (
     <motion.div
@@ -59,20 +166,25 @@ const DestinationCard = ({ dest, index }) => {
       style={{ width: "240px", height: "340px" }}
       data-hover="true"
     >
-      {/* Background image */}
-      <motion.img
-        src={dest.image}
-        alt={dest.name}
-        className="absolute inset-0 w-full h-full object-cover"
-        whileHover={{ scale: 1.08 }}
-        transition={{ duration: 0.6, ease: "easeOut" }}
-      />
+      {/* Background images — crossfade */}
+      <AnimatePresence mode="wait">
+        <motion.img
+          key={current}
+          src={dest.images[current]}
+          alt={`${dest.name} - ${current + 1}`}
+          className="absolute inset-0 w-full h-full object-cover"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.45 }}
+        />
+      </AnimatePresence>
 
       {/* Gradient overlay */}
       <div className="absolute inset-0 bg-card-gradient" />
 
       {/* Tag */}
-      <div className="absolute top-4 right-4">
+      <div className="absolute top-4 right-4 z-10">
         <span
           className={`font-inter text-[10px] tracking-wider uppercase font-semibold px-3 py-1 rounded-full ${
             dest.tag === "International"
@@ -84,8 +196,60 @@ const DestinationCard = ({ dest, index }) => {
         </span>
       </div>
 
+      {/* Prev / Next arrows — shown on card hover */}
+      {dest.images.length > 1 && (
+        <>
+          <button
+            onClick={prev}
+            className="absolute left-2 top-1/2 -translate-y-1/2 z-10
+                       w-7 h-7 rounded-full bg-black/50 backdrop-blur-sm
+                       flex items-center justify-center text-white
+                       opacity-0 group-hover:opacity-100 transition-opacity duration-200
+                       hover:bg-gold-500/80"
+            aria-label="Previous image"
+          >
+            <FaChevronLeft className="text-xs" />
+          </button>
+          <button
+            onClick={next}
+            className="absolute right-2 top-1/2 -translate-y-1/2 z-10
+                       w-7 h-7 rounded-full bg-black/50 backdrop-blur-sm
+                       flex items-center justify-center text-white
+                       opacity-0 group-hover:opacity-100 transition-opacity duration-200
+                       hover:bg-gold-500/80"
+            aria-label="Next image"
+          >
+            <FaChevronRight className="text-xs" />
+          </button>
+        </>
+      )}
+
+      {/* Dot indicators — shown on card hover */}
+      {dest.images.length > 1 && (
+        <div
+          className="absolute bottom-20 left-1/2 -translate-x-1/2 flex gap-1 z-10
+                        opacity-0 group-hover:opacity-100 transition-opacity duration-200"
+        >
+          {dest.images.map((_, i) => (
+            <button
+              key={i}
+              onClick={(e) => {
+                e.stopPropagation();
+                setCurrent(i);
+              }}
+              className={`rounded-full transition-all duration-300 ${
+                i === current
+                  ? "w-4 h-1.5 bg-gold-400"
+                  : "w-1.5 h-1.5 bg-white/40"
+              }`}
+              aria-label={`Image ${i + 1}`}
+            />
+          ))}
+        </div>
+      )}
+
       {/* Content */}
-      <div className="absolute bottom-0 left-0 right-0 p-5">
+      <div className="absolute bottom-0 left-0 right-0 p-5 z-10">
         <div className="flex items-center gap-1.5 mb-1">
           <FaMapMarkerAlt className="text-gold-400 text-xs" />
           <span className="font-inter text-xs text-white/70 tracking-wide">
@@ -95,6 +259,10 @@ const DestinationCard = ({ dest, index }) => {
         <h3 className="font-playfair font-bold text-2xl text-white group-hover:text-gold-300 transition-colors duration-300">
           {dest.name}
         </h3>
+        {/* Image counter */}
+        <p className="font-inter text-[10px] text-white/40 mt-0.5">
+          {current + 1} / {dest.images.length}
+        </p>
         {/* Animated underline */}
         <motion.div
           className="h-0.5 bg-gold-gradient rounded-full mt-2"
