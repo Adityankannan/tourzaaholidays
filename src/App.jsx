@@ -19,9 +19,9 @@ const AppContent = () => (
     <main>
       <Hero />
       <Destinations />
+      <Packages />
       <WhyUs />
       <Stats />
-      <Packages />
       <Testimonials />
       <Contact />
     </main>
