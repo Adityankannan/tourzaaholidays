@@ -4,7 +4,6 @@ import {
   FaWhatsapp,
   FaClock,
   FaMapMarkerAlt,
-  FaStar,
   FaChevronLeft,
   FaChevronRight,
 } from "react-icons/fa";
@@ -13,11 +12,24 @@ import { getWhatsAppLink } from "../../config/constants";
 // ─── Image Slideshow inside card ──────────────────────────────────────────────
 const CardSlideshow = ({ images, destination, current, setCurrent }) => {
   // Preload all images so subsequent slides appear instantly
+  // Auto-advance every 4 seconds with random offset so cards don't flip in sync
   useEffect(() => {
     images.forEach((src) => {
       const img = new Image();
       img.src = src;
     });
+    // Random initial delay to stagger card animations
+    const randomOffset = Math.random() * 4000;
+    let interval;
+    const timeout = setTimeout(() => {
+      interval = setInterval(() => {
+        setCurrent((c) => (c + 1) % images.length);
+      }, 4000);
+    }, randomOffset);
+    return () => {
+      clearTimeout(timeout);
+      if (interval) clearInterval(interval);
+    };
   }, [images]);
 
   const prev = (e) => {
@@ -31,7 +43,7 @@ const CardSlideshow = ({ images, destination, current, setCurrent }) => {
 
   return (
     <div className="relative h-60 overflow-hidden group/img cursor-pointer">
-      {/* Images — crossfade */}
+      {/* Images — smooth fade */}
       <AnimatePresence mode="wait">
         <motion.img
           key={current}
@@ -41,7 +53,7 @@ const CardSlideshow = ({ images, destination, current, setCurrent }) => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          transition={{ duration: 0.4 }}
+          transition={{ duration: 0.6, ease: [0.4, 0, 0.2, 1] }}
         />
       </AnimatePresence>
 
@@ -280,49 +292,26 @@ const PackageCard = ({ pkg, index }) => {
           )}
         </div>
 
-        <div className="flex items-center justify-between pt-2 border-t border-white/8">
-          <div>
-            <p className="font-inter text-[10px] text-white/40 uppercase tracking-wider">
-              Starting from
-            </p>
-            <p className="font-playfair font-bold text-xl gold-text">
-              {pkg.startingPrice}
-            </p>
-            <p className="font-inter text-[10px] text-white/40">per person</p>
-          </div>
-
-          <motion.a
-            href={getWhatsAppLink(pkg.destination)}
-            target="_blank"
-            rel="noopener noreferrer"
-            initial={{ opacity: 0, scale: 0.85, x: 20 }}
-            animate={{
-              opacity: isHovered ? 1 : 0,
-              scale: isHovered ? 1 : 0.85,
-              x: isHovered ? 0 : 20,
-            }}
-            transition={{ duration: 0.25, ease: "easeOut" }}
-            className="flex items-center gap-2 bg-gold-gradient text-dark-900 font-inter font-semibold
-                         text-sm px-4 py-2.5 rounded-full hover:shadow-[0_0_20px_rgba(251,191,36,0.5)]
-                         transition-shadow duration-300 whitespace-nowrap"
-            onClick={(e) => e.stopPropagation()}
-            data-hover="true"
-            aria-label={`Enquire about ${pkg.destination} on WhatsApp`}
-          >
-            <FaWhatsapp className="text-base" />
-            Enquire Now
-          </motion.a>
-
-          <motion.div
-            className="flex items-center gap-0.5"
-            animate={{ opacity: isHovered ? 0 : 1 }}
-            transition={{ duration: 0.2 }}
-          >
-            {[1, 2, 3, 4, 5].map((s) => (
-              <FaStar key={s} className="text-gold-400 text-xs" />
-            ))}
-          </motion.div>
-        </div>
+        <motion.a
+          href={getWhatsAppLink(pkg.destination)}
+          target="_blank"
+          rel="noopener noreferrer"
+          initial={{ opacity: 0, scale: 0.85 }}
+          animate={{
+            opacity: isHovered ? 1 : 0,
+            scale: isHovered ? 1 : 0.85,
+          }}
+          transition={{ duration: 0.25, ease: "easeOut" }}
+          className="flex items-center gap-2 bg-gold-gradient text-dark-900 font-inter font-semibold
+                       text-sm px-4 py-2.5 rounded-full hover:shadow-[0_0_20px_rgba(251,191,36,0.5)]
+                       transition-shadow duration-300 whitespace-nowrap w-full justify-center mt-2"
+          onClick={(e) => e.stopPropagation()}
+          data-hover="true"
+          aria-label={`Enquire about ${pkg.destination} on WhatsApp`}
+        >
+          <FaWhatsapp className="text-base" />
+          Enquire Now
+        </motion.a>
       </div>
 
       <motion.div

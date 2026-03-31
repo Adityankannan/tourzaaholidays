@@ -3,6 +3,7 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { FaWhatsapp, FaChevronDown } from "react-icons/fa";
 import { MdExplore } from "react-icons/md";
 import { WHATSAPP_NUMBER } from "../../config/constants";
+import heroBg from "../../assets/images/hero.jpg";
 
 // Floating decorative orb
 const Orb = ({ className, delay = 0 }) => (
@@ -90,7 +91,7 @@ const Hero = () => {
           style={{ willChange: "transform" }}
         >
           <img
-            src="https://picsum.photos/seed/travel-hero-landscape/1920/1080"
+            src={heroBg}
             alt="Hero background"
             className="w-full h-full object-cover object-center"
           />

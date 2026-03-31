@@ -136,11 +136,24 @@ const DestinationCard = ({ dest, index }) => {
   const [current, setCurrent] = useState(0);
 
   // Preload all images so subsequent slides appear instantly
+  // Auto-advance every 4 seconds with random offset so cards don't flip in sync
   useEffect(() => {
     dest.images?.forEach((src) => {
       const img = new Image();
       img.src = src;
     });
+    // Random initial delay to stagger card animations
+    const randomOffset = Math.random() * 4000;
+    let interval;
+    const timeout = setTimeout(() => {
+      interval = setInterval(() => {
+        setCurrent((c) => (c + 1) % dest.images.length);
+      }, 4000);
+    }, randomOffset);
+    return () => {
+      clearTimeout(timeout);
+      if (interval) clearInterval(interval);
+    };
   }, [dest.images]);
 
   const prev = (e) => {
@@ -166,7 +179,7 @@ const DestinationCard = ({ dest, index }) => {
       style={{ width: "240px", height: "340px" }}
       data-hover="true"
     >
-      {/* Background images — crossfade */}
+      {/* Background images — smooth fade */}
       <AnimatePresence mode="wait">
         <motion.img
           key={current}
@@ -176,7 +189,7 @@ const DestinationCard = ({ dest, index }) => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          transition={{ duration: 0.45 }}
+          transition={{ duration: 0.6, ease: [0.4, 0, 0.2, 1] }}
         />
       </AnimatePresence>
 
