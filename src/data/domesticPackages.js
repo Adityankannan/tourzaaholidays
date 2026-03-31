@@ -157,3 +157,4 @@ const domestic = [
   },
 ];
 
+export default domestic;

@@ -1,14 +1,42 @@
 // ─── International Package Data ───────────────────────────────────────────────
-// Replace placeholder URLs with local imports once you drop images into:
-//   src/assets/images/destinations/international/{slug}/{slug}_1.jpg, {slug}_2.jpg …
-//
-// Example:
-//   import bali_1 from '../assets/images/destinations/international/bali/bali_1.jpg';
-//   images: [bali_1, bali_2, bali_3]
+
+// Bali
+import bali1 from "../assets/images/Bali/IMG_7413.JPG";
+import bali2 from "../assets/images/Bali/IMG_7414.JPG";
+import bali3 from "../assets/images/Bali/IMG_7415.JPG";
+
+// Dubai
+import dubai1 from "../assets/images/Dubai/IMG_7404.JPG";
+import dubai2 from "../assets/images/Dubai/IMG_7469.JPG";
+import dubai3 from "../assets/images/Dubai/car-desert.jpg";
+
+// Malaysia
+import malaysia1 from "../assets/images/Malaysia/vecteezy_batu-caves-golden-murugan-statue-in-selangor-malaysia_4964608.jpg";
+import malaysia2 from "../assets/images/Malaysia/vecteezy_evening-in-kuala-lumpur-presents-tall-skyscrapers-glowing_71161042.jpg";
+import malaysia3 from "../assets/images/Malaysia/vecteezy_putra-mosque-most-famous-tourist-attraction-in-kuala-lumpur_21720982.JPG";
+
+// Maldives
+import maldives1 from "../assets/images/Maldives/IMG_7472.JPG";
+import maldives2 from "../assets/images/Maldives/piqsels.com-id-zkibx.jpg";
+import maldives3 from "../assets/images/Maldives/wallpaperflare.com_wallpaper.jpg";
+
+// Singapore
+import singapore1 from "../assets/images/Singapore/merlion-statue-cityscape-singapore.jpg";
+import singapore2 from "../assets/images/Singapore/outside-gardens-by-bay-singapore.jpg";
+import singapore3 from "../assets/images/Singapore/cheongcs-singapore-jewel-4828998.jpg";
+
+// Sri Lanka
+import srilanka1 from "../assets/images/Sri lanka/IMG_7449.JPG";
+import srilanka2 from "../assets/images/Sri lanka/IMG_7452.JPG";
+import srilanka3 from "../assets/images/Sri lanka/IMG_7455.JPG";
+
+// Thailand
+import thailand1 from "../assets/images/Thailand/hanny-naibaho-DHueZ7ZhDHE-unsplash.jpg";
+import thailand2 from "../assets/images/Thailand/miltiadis-fragkidis-xFOKUJgpQoU-unsplash.jpg";
+import thailand3 from "../assets/images/Thailand/timothy-blake-GbJfCjeupDE-unsplash.jpg";
 
 const international = [
   // ── BALI ──────────────────────────────────────────────────────────────────
-  // Drop your images as: src/assets/images/destinations/international/bali/bali_1.jpg etc.
   {
     id: "int-1",
     country: "Indonesia",
@@ -25,11 +53,7 @@ const international = [
       "Rice Terraces",
       "Mount Batur",
     ],
-    images: [
-      "https://picsum.photos/seed/bali_1/800/600",
-      "https://picsum.photos/seed/bali_2/800/600",
-      "https://picsum.photos/seed/bali_3/800/600",
-    ],
+    images: [bali1, bali2, bali3],
     flag: "🇮🇩",
     continent: "South East Asia",
   },
@@ -50,11 +74,7 @@ const international = [
       "Dubai Mall",
       "Palm Jumeirah",
     ],
-    images: [
-      "https://picsum.photos/seed/dubai_1/800/600",
-      "https://picsum.photos/seed/dubai_2/800/600",
-      "https://picsum.photos/seed/dubai_3/800/600",
-    ],
+    images: [dubai1, dubai2, dubai3],
     flag: "🇦🇪",
     continent: "Middle East",
   },
@@ -75,11 +95,7 @@ const international = [
       "Batu Caves",
       "Cameron Highlands",
     ],
-    images: [
-      "https://picsum.photos/seed/malaysia_1/800/600",
-      "https://picsum.photos/seed/malaysia_2/800/600",
-      "https://picsum.photos/seed/malaysia_3/800/600",
-    ],
+    images: [malaysia1, malaysia2, malaysia3],
     flag: "🇲🇾",
     continent: "South East Asia",
   },
@@ -100,11 +116,7 @@ const international = [
       "Sunset Cruise",
       "Dolphin Watching",
     ],
-    images: [
-      "https://picsum.photos/seed/maldives_1/800/600",
-      "https://picsum.photos/seed/maldives_2/800/600",
-      "https://picsum.photos/seed/maldives_3/800/600",
-    ],
+    images: [maldives1, maldives2, maldives3],
     flag: "🇲🇻",
     continent: "Indian Ocean",
   },
@@ -125,11 +137,7 @@ const international = [
       "Marina Bay Sands",
       "Universal Studios",
     ],
-    images: [
-      "https://picsum.photos/seed/singapore_1/800/600",
-      "https://picsum.photos/seed/singapore_2/800/600",
-      "https://picsum.photos/seed/singapore_3/800/600",
-    ],
+    images: [singapore1, singapore2, singapore3],
     flag: "🇸🇬",
     continent: "South East Asia",
   },
@@ -150,11 +158,7 @@ const international = [
       "Mirissa Beach",
       "Tea Plantation Tour",
     ],
-    images: [
-      "https://picsum.photos/seed/srilanka_1/800/600",
-      "https://picsum.photos/seed/srilanka_2/800/600",
-      "https://picsum.photos/seed/srilanka_3/800/600",
-    ],
+    images: [srilanka1, srilanka2, srilanka3],
     flag: "🇱🇰",
     continent: "South Asia",
   },
@@ -175,11 +179,7 @@ const international = [
       "Night Bazaar",
       "Elephant Sanctuary",
     ],
-    images: [
-      "https://picsum.photos/seed/thailand_1/800/600",
-      "https://picsum.photos/seed/thailand_2/800/600",
-      "https://picsum.photos/seed/thailand_3/800/600",
-    ],
+    images: [thailand1, thailand2, thailand3],
     flag: "🇹🇭",
     continent: "South East Asia",
   },
