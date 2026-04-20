@@ -18,7 +18,7 @@ const socialLinks = [
   },
   {
     icon: <FaInstagram />,
-    href: "https://instagram.com/",
+    href: "https://www.instagram.com/tourzaaholidays",
     label: "Instagram",
     color: "hover:text-pink-400 hover:border-pink-400/40",
   },
