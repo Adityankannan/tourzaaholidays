@@ -42,17 +42,89 @@ import maldives5 from "../../assets/images/maldives/wallpaperflare.com_wallpaper
 import maldives6 from "../../assets/images/maldives/wallpaperflare.com_wallpaper.jpg";
 import maldives7 from "../../assets/images/maldives/wallpaperflare.com_wallpaper4.jpg";
 
+// ─── Singapore (5 images) ─────────────────────────────────────────────────────
+import singapore1 from "../../assets/images/singapore/cegoh-singapore-2005652_1920.jpg";
+import singapore2 from "../../assets/images/singapore/cheongcs-singapore-jewel-4828998.jpg";
+import singapore3 from "../../assets/images/singapore/merlion-statue-cityscape-singapore.jpg";
+import singapore4 from "../../assets/images/singapore/outside-gardens-by-bay-singapore.jpg";
+import singapore5 from "../../assets/images/singapore/pharaoh_ezypt-usj-1914942.jpg";
+
+// ─── Thailand (6 images) ──────────────────────────────────────────────────────
+import thailand1 from "../../assets/images/thailand/hanny-naibaho-DHueZ7ZhDHE-unsplash.jpg";
+import thailand2 from "../../assets/images/thailand/miltiadis-fragkidis-xFOKUJgpQoU-unsplash.jpg";
+import thailand3 from "../../assets/images/thailand/norbert-braun-08sVw9VV9QA-unsplash.jpg";
+import thailand4 from "../../assets/images/thailand/rock-vincent-guitard-91sVkZScif0-unsplash.jpg";
+import thailand5 from "../../assets/images/thailand/sumit-chinchane-jWKk-0ZBUyg-unsplash.jpg";
+import thailand6 from "../../assets/images/thailand/timothy-blake-GbJfCjeupDE-unsplash.jpg";
+
+// ─── Kerala (9 images) ────────────────────────────────────────────────────────
+import kerala1 from "../../assets/images/kerala/IMG_7986.JPG";
+import kerala2 from "../../assets/images/kerala/IMG_7987.JPG";
+import kerala3 from "../../assets/images/kerala/IMG_7988.JPG";
+import kerala4 from "../../assets/images/kerala/IMG_7989.JPG";
+import kerala5 from "../../assets/images/kerala/IMG_7990.JPG";
+import kerala6 from "../../assets/images/kerala/IMG_7991.JPG";
+import kerala7 from "../../assets/images/kerala/IMG_7992.JPG";
+import kerala8 from "../../assets/images/kerala/IMG_7993.JPG";
+import kerala9 from "../../assets/images/kerala/IMG_7994.JPG";
+
+// ─── Jaipur (12 images) ───────────────────────────────────────────────────────
+import jaipur1 from "../../assets/images/jaipur/IMG_7577.JPG";
+import jaipur2 from "../../assets/images/jaipur/IMG_7578.JPG";
+import jaipur3 from "../../assets/images/jaipur/IMG_7579.JPG";
+import jaipur4 from "../../assets/images/jaipur/IMG_7580.JPG";
+import jaipur5 from "../../assets/images/jaipur/IMG_7581.JPG";
+import jaipur6 from "../../assets/images/jaipur/IMG_7582.JPG";
+import jaipur7 from "../../assets/images/jaipur/IMG_7583.JPG";
+import jaipur8 from "../../assets/images/jaipur/IMG_7584.JPG";
+import jaipur9 from "../../assets/images/jaipur/IMG_7585.JPG";
+import jaipur10 from "../../assets/images/jaipur/IMG_7586.JPG";
+import jaipur11 from "../../assets/images/jaipur/IMG_7587.JPG";
+import jaipur12 from "../../assets/images/jaipur/IMG_7588.JPG";
+
+// ─── Manali (16 images) ───────────────────────────────────────────────────────
+import manali1 from "../../assets/images/manali/IMG_7589.JPG";
+import manali2 from "../../assets/images/manali/IMG_7590.JPG";
+import manali3 from "../../assets/images/manali/IMG_7591.JPG";
+import manali4 from "../../assets/images/manali/IMG_7592.JPG";
+import manali5 from "../../assets/images/manali/IMG_7593.JPG";
+import manali6 from "../../assets/images/manali/IMG_7594.JPG";
+import manali7 from "../../assets/images/manali/IMG_7595.JPG";
+import manali8 from "../../assets/images/manali/IMG_7596.JPG";
+import manali9 from "../../assets/images/manali/IMG_7597.JPG";
+import manali10 from "../../assets/images/manali/IMG_7598.JPG";
+import manali11 from "../../assets/images/manali/IMG_7599.JPG";
+import manali12 from "../../assets/images/manali/IMG_7600.JPG";
+import manali13 from "../../assets/images/manali/IMG_7601.JPG";
+import manali14 from "../../assets/images/manali/IMG_7602.JPG";
+import manali15 from "../../assets/images/manali/IMG_7603.JPG";
+import manali16 from "../../assets/images/manali/IMG_7604.JPG";
+
+// ─── Tamil Nadu (10 images) ───────────────────────────────────────────────────
+import tamilnadu1 from "../../assets/images/tamilnadu/IMG_7970.JPG";
+import tamilnadu2 from "../../assets/images/tamilnadu/IMG_7971.JPG";
+import tamilnadu3 from "../../assets/images/tamilnadu/IMG_7972.JPG";
+import tamilnadu4 from "../../assets/images/tamilnadu/IMG_7973.JPG";
+import tamilnadu5 from "../../assets/images/tamilnadu/IMG_7974.JPG";
+import tamilnadu6 from "../../assets/images/tamilnadu/IMG_7975.JPG";
+import tamilnadu7 from "../../assets/images/tamilnadu/IMG_7976.JPG";
+import tamilnadu8 from "../../assets/images/tamilnadu/IMG_7977.JPG";
+import tamilnadu9 from "../../assets/images/tamilnadu/IMG_7978.JPG";
+import tamilnadu10 from "../../assets/images/tamilnadu/IMG_7979.JPG";
+
+// ─── Varanasi (10 images) ─────────────────────────────────────────────────────
+import varanasi1 from "../../assets/images/varanasi/IMG_8044.JPG";
+import varanasi2 from "../../assets/images/varanasi/IMG_8045.JPG";
+import varanasi3 from "../../assets/images/varanasi/IMG_8046.JPG";
+import varanasi4 from "../../assets/images/varanasi/IMG_8047.JPG";
+import varanasi5 from "../../assets/images/varanasi/IMG_8048.JPG";
+import varanasi6 from "../../assets/images/varanasi/IMG_8049.JPG";
+import varanasi7 from "../../assets/images/varanasi/IMG_8050.JPG";
+import varanasi8 from "../../assets/images/varanasi/IMG_8051.JPG";
+import varanasi9 from "../../assets/images/varanasi/IMG_8052.JPG";
+import varanasi10 from "../../assets/images/varanasi/IMG_8045(1).JPG";
+
 const destinations = [
-  {
-    name: "Kashmir",
-    country: "India",
-    images: [
-      "https://picsum.photos/seed/kashmir-dest/600/800",
-      "https://picsum.photos/seed/kashmir-dest2/600/800",
-      "https://picsum.photos/seed/kashmir-dest3/600/800",
-    ],
-    tag: "Domestic",
-  },
   {
     name: "Bali",
     country: "Indonesia",
@@ -78,9 +150,15 @@ const destinations = [
     name: "Kerala",
     country: "India",
     images: [
-      "https://picsum.photos/seed/kerala-dest/600/800",
-      "https://picsum.photos/seed/kerala-dest2/600/800",
-      "https://picsum.photos/seed/kerala-dest3/600/800",
+      kerala1,
+      kerala2,
+      kerala3,
+      kerala4,
+      kerala5,
+      kerala6,
+      kerala7,
+      kerala8,
+      kerala9,
     ],
     tag: "Domestic",
   },
@@ -105,6 +183,84 @@ const destinations = [
     tag: "International",
   },
   {
+    name: "Jaipur",
+    country: "India",
+    images: [
+      jaipur1,
+      jaipur2,
+      jaipur3,
+      jaipur4,
+      jaipur5,
+      jaipur6,
+      jaipur7,
+      jaipur8,
+      jaipur9,
+      jaipur10,
+      jaipur11,
+      jaipur12,
+    ],
+    tag: "Domestic",
+  },
+  {
+    name: "Singapore",
+    country: "Singapore",
+    images: [singapore1, singapore2, singapore3, singapore4, singapore5],
+    tag: "International",
+  },
+  {
+    name: "Manali",
+    country: "India",
+    images: [
+      manali1,
+      manali2,
+      manali3,
+      manali4,
+      manali5,
+      manali6,
+      manali7,
+      manali8,
+      manali9,
+      manali10,
+      manali11,
+      manali12,
+      manali13,
+      manali14,
+      manali15,
+      manali16,
+    ],
+    tag: "Domestic",
+  },
+  {
+    name: "Thailand",
+    country: "Thailand",
+    images: [
+      thailand1,
+      thailand2,
+      thailand3,
+      thailand4,
+      thailand5,
+      thailand6,
+    ],
+    tag: "International",
+  },
+  {
+    name: "Tamil Nadu",
+    country: "India",
+    images: [
+      tamilnadu1,
+      tamilnadu2,
+      tamilnadu3,
+      tamilnadu4,
+      tamilnadu5,
+      tamilnadu6,
+      tamilnadu7,
+      tamilnadu8,
+      tamilnadu9,
+      tamilnadu10,
+    ],
+    tag: "Domestic",
+  },
+  {
     name: "Maldives",
     country: "Maldives",
     images: [
@@ -119,12 +275,19 @@ const destinations = [
     tag: "International",
   },
   {
-    name: "Rajasthan",
+    name: "Varanasi",
     country: "India",
     images: [
-      "https://picsum.photos/seed/rajasthan-dest/600/800",
-      "https://picsum.photos/seed/rajasthan-dest2/600/800",
-      "https://picsum.photos/seed/rajasthan-dest3/600/800",
+      varanasi1,
+      varanasi2,
+      varanasi3,
+      varanasi4,
+      varanasi5,
+      varanasi6,
+      varanasi7,
+      varanasi8,
+      varanasi9,
+      varanasi10,
     ],
     tag: "Domestic",
   },
