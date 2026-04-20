@@ -58,25 +58,26 @@ const contactInfo = [
   {
     icon: <FaWhatsapp className="text-xl text-green-400" />,
     label: "WhatsApp",
-    value: "+91 99999 99999",
+    value: "+91 7338894973",
     href: `https://wa.me/${WHATSAPP_NUMBER}`,
   },
   {
     icon: <FaEnvelope className="text-xl text-gold-400" />,
     label: "Email",
-    value: "hello@tourzaaholidays.com",
-    href: "mailto:hello@tourzaaholidays.com",
+    value: "tourzaaholidays@gmail.com",
+    href: "mailto:tourzaaholidays@gmail.com",
   },
   {
     icon: <FaPhone className="text-xl text-blue-400" />,
     label: "Call Us",
-    value: "+91 99999 99999",
-    href: "tel:+919999999999",
+    value: "+91 7338894973",
+    href: "tel:+917338894973",
   },
   {
     icon: <FaMapMarkerAlt className="text-xl text-red-400" />,
     label: "Office",
-    value: "Chennai, Tamil Nadu, India",
+    value:
+      "Tourzaa Holidays, 320, Sathy Rd, Saravanampatti, Siranandha Puram, Coimbatore, Tamil Nadu 641035",
     href: "#",
   },
 ];

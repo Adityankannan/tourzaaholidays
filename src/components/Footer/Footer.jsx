@@ -171,29 +171,29 @@ const Footer = () => {
                   data-hover="true"
                 >
                   <FaWhatsapp className="text-green-400 flex-shrink-0" />
-                  <span className="font-inter text-sm">+91 99999 99999</span>
+                  <span className="font-inter text-sm">+91 7338894973</span>
                 </a>
               </li>
               <li>
                 <a
-                  href="mailto:hello@tourzaaholidays.com"
+                  href="mailto:tourzaaholidays@gmail.com"
                   className="flex items-center gap-3 text-white/55 hover:text-gold-400 transition-colors duration-300"
                   data-hover="true"
                 >
                   <FaEnvelope className="text-gold-400 flex-shrink-0" />
                   <span className="font-inter text-sm">
-                    hello@tourzaaholidays.com
+                    tourzaaholidays@gmail.com
                   </span>
                 </a>
               </li>
               <li>
                 <a
-                  href="tel:+919999999999"
+                  href="tel:+917338894973"
                   className="flex items-center gap-3 text-white/55 hover:text-gold-400 transition-colors duration-300"
                   data-hover="true"
                 >
                   <FaPhone className="text-blue-400 flex-shrink-0" />
-                  <span className="font-inter text-sm">+91 99999 99999</span>
+                  <span className="font-inter text-sm">+91 7338894973</span>
                 </a>
               </li>
             </ul>
