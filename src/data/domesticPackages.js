@@ -70,10 +70,10 @@ import maharashtra2 from "../assets/images/maharashtra/IMG_7996.JPG";
 import maharashtra3 from "../assets/images/maharashtra/IMG_7997.JPG";
 import maharashtra4 from "../assets/images/maharashtra/IMG_7998.JPG";
 import maharashtra5 from "../assets/images/maharashtra/IMG_7999.JPG";
-import maharashtra6 from "../assets/images/maharashtra/IMG_8000.JPG";
-import maharashtra7 from "../assets/images/maharashtra/IMG_8001.JPG";
-import maharashtra8 from "../assets/images/maharashtra/IMG_8002.JPG";
-import maharashtra9 from "../assets/images/maharashtra/IMG_8003.JPG";
+import maharashtra6 from "../assets/images/maharashtra/IMG_8001.JPG";
+import maharashtra7 from "../assets/images/maharashtra/IMG_8002.JPG";
+import maharashtra8 from "../assets/images/maharashtra/IMG_8003.JPG";
+import maharashtra9 from "../assets/images/maharashtra/IMG_8004.JPG";
 import maharashtra10 from "../assets/images/maharashtra/IMG_8005.JPG";
 
 // ─── Manali Images ──────────────────────────────────────────────────
