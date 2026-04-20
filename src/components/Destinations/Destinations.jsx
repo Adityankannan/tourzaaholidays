@@ -233,14 +233,7 @@ const destinations = [
   {
     name: "Thailand",
     country: "Thailand",
-    images: [
-      thailand1,
-      thailand2,
-      thailand3,
-      thailand4,
-      thailand5,
-      thailand6,
-    ],
+    images: [thailand1, thailand2, thailand3, thailand4, thailand5, thailand6],
     tag: "International",
   },
   {
@@ -349,6 +342,8 @@ const DestinationCard = ({ dest, index }) => {
           src={dest.images[current]}
           alt={`${dest.name} - ${current + 1}`}
           className="absolute inset-0 w-full h-full object-cover"
+          loading="lazy"
+          decoding="async"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}

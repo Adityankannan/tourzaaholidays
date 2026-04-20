@@ -50,6 +50,8 @@ const CardSlideshow = ({ images, destination, current, setCurrent }) => {
           src={images[current]}
           alt={`${destination} - photo ${current + 1}`}
           className="absolute inset-0 w-full h-full object-cover"
+          loading="lazy"
+          decoding="async"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
@@ -144,6 +146,8 @@ const ImagePopup = ({ images, current, setCurrent, onClose }) => {
             src={images[current]}
             alt={`Preview ${current + 1}`}
             className="w-full h-[320px] object-cover"
+            loading="lazy"
+            decoding="async"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
